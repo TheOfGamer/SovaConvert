@@ -1,7 +1,7 @@
 # SovaConvert
 ###  AI file converter 
 
-By using OpenAI API (ChatGPT 3.5) this website can create convert code and run it on the way (Backend Server Required)
+By using OpenAI API (ChatGPT 3.5) this website can generate convertation code and run it on the go (Backend Server Required)
 
 You can find the main website [here](https://convert.sovagroup.one)
 
@@ -13,4 +13,4 @@ PHP
 Python
 ```
 
-Please notice that you need to atribute the [author of the project](https://sovagroup.one)
+Please notice that you need to provide [author](https://sovagroup.one) attribution
