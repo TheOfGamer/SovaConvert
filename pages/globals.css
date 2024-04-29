@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    background: #000;
+    color: #fff;
+}
+
+h2 {
+    color: #999 !important;
+}
+
+* {
+    font-family: sans-serif;
+}
