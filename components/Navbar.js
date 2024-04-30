@@ -28,14 +28,14 @@ export function Nav() {
                       </Link>
                   </NavbarItem>
                   <NavbarItem >
-                      <Link color="foreground" href="#" aria-current="page">
+                      <Link color="foreground" href="https://sovagroup.one/" aria-current="page">
                           SovaGroup
                       </Link>
                   </NavbarItem>
               </NavbarContent>
               <NavbarContent justify="end">
                   <NavbarItem>
-                      <Button as={Link} color="primary" href="#" variant="flat">
+                      <Button as={Link} color="primary" href="https://youtube.com/watch?v=dQw4w9WgXcQ" variant="flat">
                           Поддержать
                       </Button>
                   </NavbarItem>
@@ -45,9 +45,11 @@ export function Nav() {
                           <Link color="foreground" href="#">
                               Конвертер
                           </Link>
+                          {// зачем если мы уже на этой страницы?
+                              }
                       </NavbarMenuItem>
                   <NavbarMenuItem>
-                      <Link color="foreground" href="#">SovaGroup</Link>
+                      <Link color="foreground" href="https://sovagroup.one/">SovaGroup</Link>
                   </NavbarMenuItem>
                   <NavbarMenuItem>
                       <Link color="foreground" href="#">Поддержать</Link>

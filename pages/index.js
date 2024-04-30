@@ -1,27 +1,89 @@
-
-
-import React from "react";
-import {Button, ButtonGroup, Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, CardBody, Card, Input} from "@nextui-org/react";
+//ГовноКод от SG - off
+import {Button,
+    ButtonGroup,
+    Navbar,
+    NavbarBrand,
+    NavbarContent,
+    NavbarItem,
+    Link,
+    CardBody,
+    Card,
+    Input} from "@nextui-org/react";
 import {title, subtitle} from "@/components/primitives";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import Image from "next/image";
-import Padlock from "../public/padlock.png";
+import React from "react";
+import axios from "axios";
+import toast, { Toaster } from 'react-hot-toast';
+//ГовноКод от SG - on
 
 export default function Home() {
-    const rightImageStyle = {
-        position: 'right',
-    }
-    const router = useRouter();
+    const [file, setFile] = useState(null);
+    const [inputType, setInputType] = useState('');
+    const [outputType, setOutputType] = useState('');
+
+    const handleFileChange = event => {
+        setFile(event.target.files[0]);
+    };
+
+    const handleInputTypeChange = event => {
+        setInputType(event.target.value);
+    };
+
+    const handleOutputTypeChange = event => {
+        setOutputType(event.target.value);
+    };
+
+    const handleSubmit = async event => {
+        event.preventDefault();
+
+        if (!file || !inputType || !outputType) {
+            toast.error("Необходимо выбрать файл и указать типы преобразования!");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('inputType', inputType);
+        formData.append('outputType', outputType);
+
+        try {
+            const response = await axios.post('/convert', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+            console.log(response.data);
+        } catch (error) {
+            toast.error("Критическая ошибка. Обратитесь в техническую поддержку .");
+        }
+    };
   return (
     <main className="dark">
 <center>
     <div className="my-auto">
+    <div>
+        <Toaster
+            position="bottom-center"
+            reverseOrder={false}
+            toastOptions={{
+                className: '',
+                style: {
+                    border: '1px solid #181818',
+                    padding: '10px',
+                    color: '#fff',
+                    backgroundColor: '#181818',
+                },
+            }}
+        />
+    </div>
             <Card className="max-w-md w-full px-6 py-8 rounded-lg shadow-md mb-auto">
                 <div className="text-center">
                     <h1 className="text-3xl font-bold text-gray-100 dark:text-gray-100">SovaConvert</h1>
                     <p className="mt-2 text-gray-400 dark:text-gray-400">ИИ конвертор файлов из любого формата!</p>
                 </div>
-                <form className="mt-6 space-y-4">
+                <form onSubmit={handleSubmit} className="mt-6 space-y-4">
                     <div>
                         <label className="block text-sm font-medium text-gray-300 dark:text-gray-300" htmlFor="input-file">
                             Загрузить файл
@@ -34,10 +96,9 @@ export default function Home() {
                                         className="relative cursor-pointer rounded-md font-medium text-red-500 hover:text-indigo-300 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
                                         htmlFor="input-file"
                                     >
-                                        <span>Загрузите файл</span>
-                                        <input className="sr-only" id="input-file" type="file" />
+                                        <input type="file" id="input-file" onChange={handleFileChange} />
                                     </label>
-                                    <p className="pl-1">или используйте drag and drop</p>
+
                                 </div>
                                 <p className="text-xs text-gray-500 dark:text-gray-400">Любое расширение, до 100МБ</p>
                             </div>
@@ -48,13 +109,13 @@ export default function Home() {
                             <label className="block text-sm font-medium text-gray-300 dark:text-gray-300" htmlFor="input-type">
                                 Перобразовать из
                             </label>
-                            <Input variant="bordered" className="w-full" id="input-type" placeholder="Исходный тип" type="text" />
+                            <Input variant="bordered" className="w-full" id="input-type" value={inputType} onChange={handleInputTypeChange} placeholder="Исходный тип" type="text" />
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-gray-300 dark:text-gray-300" htmlFor="output-type">
                                 Преобразовать в
                             </label>
-                            <Input variant="bordered" className="w-full" id="output-type" placeholder="Выходной тип" type="text" />
+                            <Input variant="bordered" className="w-full" id="output-type" value={outputType} onChange={handleOutputTypeChange} placeholder="Выходной тип" type="text" />
                         </div>
                     </div>
                     <Button className="w-full" type="submit" color="primary">
