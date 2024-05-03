@@ -65,7 +65,7 @@ export default function Home() {
         formData.append('outputType', outputType);
 
         try {
-            const response = await axios.post('http://cloud.sovagroup.one:2082/index.php', formData, {
+            const response = await axios.post('https://convert-cdn.sovagroup.one/index.php', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
