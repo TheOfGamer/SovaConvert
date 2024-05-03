@@ -28,11 +28,9 @@ Backend and brige:
 Enjoy!
 
 ## Remember, to run this code you need
-```
-OpenAI API Key
-[OwlCloud Account](https://cloud.sovagroup.one)
-Linux Server (obvious)
-```
+- OpenAI API Key
+- [OwlCloud Account](https://cloud.sovagroup.one)
+- Linux Server (obvious)
 
 Please notice that you need to provide [author](https://sovagroup.one) attribution
 
