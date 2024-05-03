@@ -1,38 +1,46 @@
 # SovaConvert
-###  AI file converter 
+###  ИИ конвертор файлов 
 
-By using OpenAI API (ChatGPT 3.5) this website can generate convertation code and run it on the go (Backend Server Required)
+При помощи OpenAI API (ChatGPT 3.5) этот веб-сайт может генерировать код конвертации файлов и запускать его для обработки файла (Необходим бекенд сервер)
 
-You can find the main website [here](https://convert.sovagroup.one)
+Ты можешь найти этот веб-сайт [здесь](https://convert.sovagroup.one)
 
-This code uses:
+Используемые языки:
 ```
+Node.JS
 Next.JS
-NextUI
 PHP
 Python
 ```
+## Структура репозитория
+```
+- / *файлы конфигурации Next.JS и md фалйы
+- backend *файлы бекенда (конвертер и мост)
+  |- Python *сам конвертер
+  |- PHP *мост между фронтедом и бекендом
+- components *дополнительные js файлы для фронтеда
+- pages *главная страница сайта (и единственная)
+```
 
+## Чтобы установить этот проект на свой сервер
+Фронтед:
+1. Сделай форк репозитория
+2. Запусти его на `Vercel`
 
-## To install this project on your server
-Fornted:
-1. Fork this repository
-2. Run it via `Vercel`
+Бекенд:
 
-Backend and brige:
+3. Загрузи все файлы из папки PHP в директоории `backend` на другой веб-сервер
+4. Загрузи все файла из Python в директоории `backend` в папку `/home/sgadmin/` на сервере (создай такую, если её нет)
+5. Введи данные от SSH, аккаунта OwlCloud и ключ OpenAI в `config.php` и `main.py`
+6. Измени адрес бекенд сервера (где хранятся .php файлы) в `/pages/index.js`
+Готово!
 
-3. Put all .php files from `backend` folder on other web server
-4. Put all .py and .conf files on linux server in `/home/sgadmin/` (create one if don't exist)
-5. Enter SSH and OwlCloud Account details in `config.php` and `python.conf`
-6. Change backend server address (where .php files contains) in `/pages/index.js`
-Enjoy!
+## Для запуска кода на своём сервере необходимы
+- Ключ OpenAI API
+- [Аккаунт OwlCloud](https://cloud.sovagroup.one)
+- Linux сервер (капитан очевидность)
 
-## Remember, to run this code you need
-- OpenAI API Key
-- [OwlCloud Account](https://cloud.sovagroup.one)
-- Linux Server (obvious)
-
-Please notice that you need to provide [author](https://sovagroup.one) attribution
+Пожалуйста, не забудь указать [автора](https://sovagroup.one) этого репозитория
 
 
 Made with ❤️ by TheOfSover and S4mat

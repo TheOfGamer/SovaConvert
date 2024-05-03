@@ -17,6 +17,17 @@ export default function RootLayout({ Component, pageProps }) {
   const router = useRouter();
   return (
     <NextUIProvider>
+      <title>SovaConvert</title>
+      <meta property="og:title" content="SovaConvert" />
+      <meta
+          name="description"
+          content="Конвертер файлов с искуственным интеллектом"
+          key="desc"
+      />
+      <meta
+          property="og:description"
+          content="Конвертер файлов с искуственным интеллектом"
+      />
       <div className="relative flex flex-col h-screen">
     <Nav />
             <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">

@@ -23,8 +23,8 @@ export function Nav() {
 
               <NavbarContent className="hidden sm:flex gap-4" justify="center">
                   <NavbarItem isActive>
-                      <Link color="" href="#">
-                          Конвертер
+                      <Link color="https://github.com/TheOfGamer/SovaConvert" href="#">
+                          GitHub
                       </Link>
                   </NavbarItem>
                   <NavbarItem >
@@ -35,24 +35,22 @@ export function Nav() {
               </NavbarContent>
               <NavbarContent justify="end">
                   <NavbarItem>
-                      <Button as={Link} color="primary" href="https://youtube.com/watch?v=dQw4w9WgXcQ" variant="flat">
+                      <Button as={Link} color="primary" href="https://www.donationalerts.com/r/theofgamer" variant="flat">
                           Поддержать
                       </Button>
                   </NavbarItem>
               </NavbarContent>
               <NavbarMenu className="dark">
                       <NavbarMenuItem isActve>
-                          <Link color="foreground" href="#">
-                              Конвертер
+                          <Link color="foreground" href="https://github.com/TheOfGamer/SovaConvert">
+                              GitHub
                           </Link>
-                          {// зачем если мы уже на этой страницы?
-                              }
                       </NavbarMenuItem>
                   <NavbarMenuItem>
                       <Link color="foreground" href="https://sovagroup.one/">SovaGroup</Link>
                   </NavbarMenuItem>
                   <NavbarMenuItem>
-                      <Link color="foreground" href="#">Поддержать</Link>
+                      <Link color="foreground" href="https://www.donationalerts.com/r/theofgamer">Поддержать</Link>
                   </NavbarMenuItem>
               </NavbarMenu>
           </Navbar>

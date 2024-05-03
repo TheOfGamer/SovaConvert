@@ -8,8 +8,16 @@ import {Button,
     Link,
     CardBody,
     Card,
-    Input} from "@nextui-org/react";
+    Input,
+    Code,
+    Modal,
+    ModalContent,
+    ModalHeader,
+    ModalBody,
+    ModalFooter,
+    useDisclosure} from "@nextui-org/react";
 import {title, subtitle} from "@/components/primitives";
+import { useEffect } from "react";
 import { useState } from "react";
 import Image from "next/image";
 import React from "react";
@@ -18,6 +26,15 @@ import toast, { Toaster } from 'react-hot-toast';
 //ГовноКод от SG - on
 
 export default function Home() {
+    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+
+    useEffect(() => {
+        const showModal = localStorage.getItem('showModal');
+        if (!showModal) {
+            onOpen();
+            localStorage.setItem('showModal', 'false');
+        }
+    }, []);
     const [file, setFile] = useState(null);
     const [inputType, setInputType] = useState('');
     const [outputType, setOutputType] = useState('');
@@ -48,21 +65,25 @@ export default function Home() {
         formData.append('outputType', outputType);
 
         try {
-            const response = await axios.post('https://cloud.sovagroup.one:2082/convert', formData, {
+            const response = await axios.post('http://cloud.sovagroup.one:2082/index.php', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
 
-            if (response.data.success) {
-                // Если success === true, перейти по ссылке в JSON
-                window.location.href = response.data;
+            if (response.data) {
+                if (response.data.startsWith("https")) {
+                    const newWindow = window.open(response.data, '_blank');
+                    if (newWindow) {
+                        newWindow.opener = null;
+                    }
+                } else {
+                    toast.error(response.data);
+                }
             } else {
-                // Если success === false, отобразить ошибку через toast
                 toast.error(response.data);
             }
         } catch (error) {
-            // Обработка критической ошибки
             toast.error("Критическая ошибка. Обратитесь в техническую поддержку.");
         }
     };
@@ -85,6 +106,29 @@ export default function Home() {
             }}
         />
     </div>
+        <Modal isOpen={isOpen} onOpenChange={onOpenChange} className="dark">
+            <ModalContent>
+                {(onClose) => (
+                    <>
+                        <ModalHeader className="flex flex-col gap-1">Обратите внимание!</ModalHeader>
+                        <ModalBody>
+                            <p>
+                                SovaConvert использует технологии искуственного интеллекта для обработки файлов.
+                                ИИ может допускать ошибки, возможно повреждение файла или неточная конвертация.
+                            </p>
+                            <p>
+                                Продолжая использовать этот сайт вы соглашаетесь с условиями соглашения SovaGroup, OwlCloud, а также OpenAI.
+                            </p>
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button color="primary" onPress={onClose}>
+                                Принять
+                            </Button>
+                        </ModalFooter>
+                    </>
+                )}
+            </ModalContent>
+        </Modal>
             <Card className="max-w-md w-full px-6 py-8 rounded-lg shadow-md mb-auto">
                 <div className="text-center">
                     <h1 className="text-3xl font-bold text-gray-100 dark:text-gray-100">SovaConvert</h1>
@@ -116,13 +160,13 @@ export default function Home() {
                             <label className="block text-sm font-medium text-gray-300 dark:text-gray-300" htmlFor="input-type">
                                 Перобразовать из
                             </label>
-                            <Input variant="bordered" className="w-full" id="input-type" value={inputType} onChange={handleInputTypeChange} placeholder="Исходный тип" type="text" />
+                            <Input maxLength="10" variant="bordered" className="w-full" id="input-type" value={inputType} onChange={handleInputTypeChange} placeholder="Исходный тип" type="text" />
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-gray-300 dark:text-gray-300" htmlFor="output-type">
                                 Преобразовать в
                             </label>
-                            <Input variant="bordered" className="w-full" id="output-type" value={outputType} onChange={handleOutputTypeChange} placeholder="Выходной тип" type="text" />
+                            <Input maxLength="10" variant="bordered" className="w-full" id="output-type" value={outputType} onChange={handleOutputTypeChange} placeholder="Выходной тип" type="text" />
                         </div>
                     </div>
                     <Button className="w-full" type="submit" color="primary">
@@ -131,6 +175,8 @@ export default function Home() {
                 </form>
             </Card>
     </div>
+    <div className="mt-80"></div>
+    <Code>Made with ♥ by <Code color="primary"><a href="https://sovagroup.one/" target="_blank" rel="noopener noreferrer">SovaGroup</a></Code></Code>
 </center>
 
     </main>
