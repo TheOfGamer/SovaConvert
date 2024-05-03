@@ -54,9 +54,16 @@ export default function Home() {
                 }
             });
 
-            console.log(response.data);
+            if (response.data.success) {
+                // Если success === true, перейти по ссылке в JSON
+                window.location.href = response.data;
+            } else {
+                // Если success === false, отобразить ошибку через toast
+                toast.error(response.data);
+            }
         } catch (error) {
-            toast.error("Критическая ошибка. Обратитесь в техническую поддержку .");
+            // Обработка критической ошибки
+            toast.error("Критическая ошибка. Обратитесь в техническую поддержку.");
         }
     };
   return (
