@@ -20,6 +20,7 @@ Fornted:
 2. Run it via `Vercel`
 
 Backend and brige:
+
 3. Put all .php files from `backend` folder on other web server
 4. Put all .py and .conf files on linux server in `/home/sgadmin/` (create one if don't exist)
 5. Enter SSH and OwlCloud Account details in `config.php` and `python.conf`
