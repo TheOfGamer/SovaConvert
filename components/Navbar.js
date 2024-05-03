@@ -23,7 +23,7 @@ export function Nav() {
 
               <NavbarContent className="hidden sm:flex gap-4" justify="center">
                   <NavbarItem isActive>
-                      <Link color="https://github.com/TheOfGamer/SovaConvert" href="#">
+                      <Link color="foreground" href="https://github.com/TheOfGamer/SovaConvert">
                           GitHub
                       </Link>
                   </NavbarItem>
