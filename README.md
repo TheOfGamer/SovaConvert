@@ -14,7 +14,7 @@ Python
 ```
 
 
-##To install this project on your server
+## To install this project on your server
 Fornted:
 1. Fork this repository
 2. Run it via `Vercel`
@@ -25,7 +25,7 @@ Backend and brige:
 6. Change backend server address (where .php files contains) in `/pages/index.js`
 Enjoy!
 
-##Remember, to run this code you need
+## Remember, to run this code you need
 ```
 OpenAI API Key
 [OwlCloud Account](https://cloud.sovagroup.one)
