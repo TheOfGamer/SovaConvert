@@ -1,0 +1,10 @@
+pillow
+pydub
+ffmpeg
+fpdf
+shutil
+win32com
+openai
+tempfile
+requests
+ffprobe
