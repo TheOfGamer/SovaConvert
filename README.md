@@ -18,6 +18,7 @@ Python
 Fornted:
 1. Fork this repository
 2. Run it via `Vercel`
+
 Backend and brige:
 3. Put all .php files from `backend` folder on other web server
 4. Put all .py and .conf files on linux server in `/home/sgadmin/` (create one if don't exist)
