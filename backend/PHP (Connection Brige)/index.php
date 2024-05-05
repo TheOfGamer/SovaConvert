@@ -1,9 +1,9 @@
 <?php
 include('config.php');
 header('Access-Control-Allow-Origin: *');
-$extfrom = $_POST["inputType"];
-$extto = $_POST["outputType"];
-$file = $_FILES["file"];
+$extfrom = substr($_POST["inputType"], 0, 9);
+$extto = substr($_POST["outputType"], 0, 9);
+$file = substr($_FILES["file"], 0, 9);
 
 function login_to_service($username, $password) {
     $url = "https://cloud.sovagroup.one/api/login.php?login={$username}&pass={$password}";
